@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Services | レコーディング・録音相談のプロフェッショナル</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #FF6B35;
+            --color-secondary: #F7931E;
+            --color-accent: #C1121F;
+            --color-dark: #2B1810;
+            --color-cream: #FFF8F0;
+            --color-beige: #F4E4D7;
+            --color-gold: #D4AF37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background: var(--color-cream);
+            color: var(--color-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: var(--color-dark);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Righteous', cursive;
+            font-size: 1.8rem;
+            color: var(--color-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "🎵";
+            font-size: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--color-cream);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-secondary);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-beige) 0%, var(--color-cream) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.05;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .note-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .note-2 { top: 20%; right: 15%; animation-delay: 2s; }
+        .note-3 { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .note-4 { bottom: 15%; right: 10%; animation-delay: 6s; }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 0px var(--color-secondary);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--color-accent);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--color-dark);
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Cards */
+        .services-overview {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .services-overview::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--color-cream), white);
+        }
+
+        .section-title {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--color-dark);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-dark);
+            opacity: 0.7;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-big-card {
+            background: var(--color-beige);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 4px solid var(--color-dark);
+            box-shadow: 12px 12px 0px var(--color-dark);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-big-card:nth-child(1) { animation-delay: 0.2s; }
+        .service-big-card:nth-child(2) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-big-card:hover {
+            transform: translate(-6px, -6px);
+            box-shadow: 18px 18px 0px var(--color-dark);
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-icon-large {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-big-card h3 {
+            font-family: 'Righteous', cursive;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .service-big-card .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-dark);
+            opacity: 0.8;
+        }
+
+        .service-big-card .description {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .service-highlights {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-highlights li {
+            padding: 0.7rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .service-highlights li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .price-tag {
+            background: white;
+            border: 3px solid var(--color-dark);
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag .amount {
+            font-family: 'Righteous', cursive;
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+
+        .price-tag .label {
+            font-size: 0.9rem;
+            color: var(--color-dark);
+            opacity: 0.7;
+        }
+
+        .service-link {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .service-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            color: white;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about .section-title {
+            color: white;
+        }
+
+        .about .section-title::after {
+            background: white;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Righteous', cursive;
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 6rem 2rem;
+            background: var(--color-cream);
+        }
+
+        .skills-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--color-dark);
+            box-shadow: 6px 6px 0px var(--color-dark);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px var(--color-dark);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+            font-weight: 900;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: var(--color-dark);
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--color-dark) 0%, #1a0f0a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Righteous', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-section .cta-button {
+            font-size: 1.2rem;
+            padding: 1.2rem 2.5rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(255, 107, 53, 0.6);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-cream);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-secondary);
+        }
+
+        footer p {
+            opacity: 0.7;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Audio Services</div>
+            <nav>
+                <a href="#services">サービス</a>
+                <a href="#about">About</a>
+                <a href="#skills">スキル</a>
+            </nav>
+            <a href="#contact" class="cta-button">お問い合わせ</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="music-note note-1">🎵</div>
+        <div class="music-note note-2">🎶</div>
+        <div class="music-note note-3">🎼</div>
+        <div class="music-note note-4">🎹</div>
+        
+        <div class="hero-content">
+            <h1>あなたの音楽を<br>プロレベルに。</h1>
+            <div class="subtitle">レコーディング・録音相談の総合サービス</div>
+            <p>スタジオレコーディングから自宅録音の相談まで、<br>音楽制作のあらゆる場面をサポートします。</p>
+            <a href="#services" class="cta-button">サービスを見る</a>
+        </div>
+    </section>
+
+    <section class="services-overview" id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="section-subtitle">2つの専門サービスで、あなたの音楽制作をトータルサポート</p>
+
+        <div class="services-grid">
+            <div class="service-big-card">
+                <div class="service-badge">相談サービス</div>
+                <div class="service-icon-large">🎤</div>
+                <h3>歌みた録音相談室</h3>
+                <p class="tagline">自宅録音を、もっときれいに。</p>
+                <p class="description">
+                    「部屋で録音しているけど音質が良くない」「どんな機材を買えばいいかわからない」そんなお悩みをオンライン相談で解決します。
+                </p>
+
+                <ul class="service-highlights">
+                    <li>録音環境の診断とアドバイス</li>
+                    <li>マイク・機材選定サポート</li>
+                    <li>録音テクニックの指導</li>
+                    <li>チャットでアフターフォロー</li>
+                </ul>
+
+                <div class="price-tag">
+                    <div class="amount">¥3,000〜</div>
+                    <div class="label">60分通話相談</div>
+                </div>
+
+                <a href="utamita-recording-consultation.html" class="service-link">詳細を見る →</a>
+            </div>
+
+            <div class="service-big-card">
+                <div class="service-badge">エンジニア業</div>
+                <div class="service-icon-large">🎚️</div>
+                <h3>Recording Engineer</h3>
+                <p class="tagline">プロフェッショナルな音質を、あなたの楽曲に。</p>
+                <p class="description">
+                    スタジオでのレコーディング業務からミックス・編集まで、プロの技術で楽曲制作をサポート。リーズナブルな価格で高品質なサウンドを実現します。
+                </p>
+
+                <ul class="service-highlights">
+                    <li>スタジオレコーディング全般</li>
+                    <li>ミックス・マスタリング</li>
+                    <li>編集・ピッチ補正</li>
+                    <li>セッション管理・納品</li>
+                </ul>
+
+                <div class="price-tag">
+                    <div class="amount">¥1,000</div>
+                    <div class="label">/ 1時間</div>
+                </div>
+
+                <a href="recording-engineer-portfolio.html" class="service-link">詳細を見る →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2 class="section-title">About</h2>
+            <p>
+                音楽制作において「録音」は最も重要な工程の一つです。
+                どんなに素晴らしい歌声や演奏も、録音が適切でなければその魅力は半減してしまいます。
+            </p>
+            <p>
+                私は、初心者の方からプロの方まで、それぞれのニーズに合わせたサポートを提供しています。
+                自宅録音の環境改善から、スタジオでのプロフェッショナルなレコーディングまで、
+                あなたの音楽制作を次のレベルへ導きます。
+            </p>
+
+            <div class="about-stats">
+                <div class="stat-card">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">相談実績</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">レコーディング</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">満足度</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="skills-content">
+            <h2 class="section-title">スキル・対応範囲</h2>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🎙️</div>
+                    <h4>レコーディング</h4>
+                    <p>ボーカル、楽器録音、マイクセッティング、ゲイン調整</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎚️</div>
+                    <h4>ミックス</h4>
+                    <p>EQ、コンプ、リバーブ、バランス調整、ステレオイメージング</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">✂️</div>
+                    <h4>編集</h4>
+                    <p>ピッチ補正、タイミング修正、ノイズ除去、コンピング</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h4>DAW</h4>
+                    <p>Pro Tools、Logic Pro、Cubase、Studio One対応</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🎧</div>
+                    <h4>機材知識</h4>
+                    <p>マイク、オーディオIF、プラグイン、防音対策</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">📚</div>
+                    <h4>コンサルティング</h4>
+                    <p>環境診断、機材選定、ワークフロー最適化</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>さあ、始めましょう。</h2>
+        <p>あなたの音楽を、次のステージへ。</p>
+        <div class="cta-buttons">
+            <a href="utamita-recording-consultation.html" class="cta-button">録音相談を申し込む</a>
+            <a href="recording-engineer-portfolio.html" class="cta-button">エンジニアを依頼する</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="utamita-recording-consultation.html">歌みた録音相談室</a>
+                <a href="recording-engineer-portfolio.html">Recording Engineer</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p>&copy; 2024 Audio Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-big-card, .skill-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
